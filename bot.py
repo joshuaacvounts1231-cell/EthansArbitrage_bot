@@ -10,7 +10,7 @@ CHANNEL_LINK = os.environ.get("CHANNEL_LINK", "https://t.me/+PMZT4DC4fTowZjk0")
 CHANNEL_BUTTON_TEXT = os.environ.get("CHANNEL_BUTTON_TEXT", "📈 Join the Channel")
 
 # Path to the image inside your repo (must be uploaded alongside bot.py)
-WELCOME_IMAGE_PATH = os.environ.get("WELCOME_IMAGE_PATH", "welcome.jpg")
+WELCOME_IMAGE_PATH = os.environ.get("WELCOME_IMAGE_PATH", "https://ibb.co/HfwG8qZh")
 
 WELCOME_MESSAGE = (
     "📊 *Daily Forex Analysis & Trading Insights*\n\n"
