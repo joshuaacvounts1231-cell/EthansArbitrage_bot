@@ -9,6 +9,9 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN")
 CHANNEL_LINK = os.environ.get("CHANNEL_LINK", "https://t.me/+PMZT4DC4fTowZjk0")
 CHANNEL_BUTTON_TEXT = os.environ.get("CHANNEL_BUTTON_TEXT", "📈 Join the Channel")
 
+# Path to the image inside your repo (must be uploaded alongside bot.py)
+WELCOME_IMAGE_PATH = os.environ.get("WELCOME_IMAGE_PATH", "welcome.jpg")
+
 WELCOME_MESSAGE = (
     "📊 *Daily Forex Analysis & Trading Insights*\n\n"
     "Stay updated with the latest Forex market movements, technical analysis, "
@@ -30,18 +33,28 @@ logger = logging.getLogger(__name__)
 
 # ---------------- HANDLERS ----------------
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Send the welcome message with a button linking to the channel."""
+    """Send the welcome photo + caption with a button linking to the channel."""
     keyboard = [
         [InlineKeyboardButton(CHANNEL_BUTTON_TEXT, url=CHANNEL_LINK)]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    await update.message.reply_text(
-        WELCOME_MESSAGE,
-        parse_mode="Markdown",
-        reply_markup=reply_markup,
-        disable_web_page_preview=True,
-    )
+    try:
+        with open(WELCOME_IMAGE_PATH, "rb") as photo:
+            await update.message.reply_photo(
+                photo=photo,
+                caption=WELCOME_MESSAGE,
+                parse_mode="Markdown",
+                reply_markup=reply_markup,
+            )
+    except FileNotFoundError:
+        logger.error(f"Image not found at {WELCOME_IMAGE_PATH}, sending text only.")
+        await update.message.reply_text(
+            WELCOME_MESSAGE,
+            parse_mode="Markdown",
+            reply_markup=reply_markup,
+            disable_web_page_preview=True,
+        )
 
 
 async def fallback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
