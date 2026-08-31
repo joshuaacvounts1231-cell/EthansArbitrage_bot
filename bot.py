@@ -16,14 +16,20 @@ WELCOME_IMAGE_URL = os.environ.get(
 )
 
 WELCOME_MESSAGE = (
-    "📊 *Daily Forex Analysis & Trading Insights*\n\n"
-    "Stay updated with the latest Forex market movements, technical analysis, "
-    "important price levels, and potential trading setups. Our channel provides "
-    "regular market insights covering major currency pairs, market trends, and "
-    "key opportunities to help traders make more informed decisions.\n\n"
-    "Whether you're an experienced trader or looking to understand the Forex "
-    "market better, join us for consistent analysis and useful trading information.\n\n"
-    "👇 Make money while sleeping 😴"
+    "🚀 *Welcome to the Crypto Arbitrage Community*\n\n"
+    "We track the crypto market every day to identify price differences, "
+    "arbitrage opportunities and interesting market movements across multiple "
+    "platforms.\n\n"
+    "Inside the private channel you'll get:\n\n"
+    "⚡️ Real-time arbitrage analyses\n"
+    "📊 Market opportunities & price gaps\n"
+    "🔎 Clear explanations and actionable insights\n"
+    "🌍 Updates throughout the day\n"
+    "🎁 100% FREE ACCESS\n\n"
+    "No courses. No subscription. No unnecessary hype.\n"
+    "Just crypto enthusiasts sharing opportunities and market analysis.\n\n"
+    "Ready to see the latest opportunities?\n\n"
+    "👇 Join the private channel now"
 )
 
 # ---------------- LOGGING ----------------
