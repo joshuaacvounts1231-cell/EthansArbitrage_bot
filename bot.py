@@ -9,8 +9,11 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN")
 CHANNEL_LINK = os.environ.get("CHANNEL_LINK", "https://t.me/+PMZT4DC4fTowZjk0")
 CHANNEL_BUTTON_TEXT = os.environ.get("CHANNEL_BUTTON_TEXT", "📈 Join the Channel")
 
-# Path to the image inside your repo (must be uploaded alongside bot.py)
-WELCOME_IMAGE_PATH = os.environ.get("WELCOME_IMAGE_PATH", "https://ibb.co/HfwG8qZh")
+# Direct URL to the welcome image
+WELCOME_IMAGE_URL = os.environ.get(
+    "WELCOME_IMAGE_URL",
+    "https://i.ibb.co/MxwP07dB/private-jet-640x360.png"
+)
 
 WELCOME_MESSAGE = (
     "📊 *Daily Forex Analysis & Trading Insights*\n\n"
@@ -40,15 +43,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     try:
-        with open(WELCOME_IMAGE_PATH, "rb") as photo:
-            await update.message.reply_photo(
-                photo=photo,
-                caption=WELCOME_MESSAGE,
-                parse_mode="Markdown",
-                reply_markup=reply_markup,
-            )
-    except FileNotFoundError:
-        logger.error(f"Image not found at {WELCOME_IMAGE_PATH}, sending text only.")
+        await update.message.reply_photo(
+            photo=WELCOME_IMAGE_URL,
+            caption=WELCOME_MESSAGE,
+            parse_mode="Markdown",
+            reply_markup=reply_markup,
+        )
+    except Exception as e:
+        logger.error(f"Failed to send photo from URL: {e}, sending text only.")
         await update.message.reply_text(
             WELCOME_MESSAGE,
             parse_mode="Markdown",
